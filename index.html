@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Little Surprise For Gayu 💗</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Particle Canvas -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+    <!-- ======================== INITIAL SCREEN ======================== -->
+    <section id="initial-screen" class="screen active" aria-label="Gift surprise">
+        <div class="initial-content">
+            <!-- Floating decorations -->
+            <div class="floating-deco" aria-hidden="true">
+                <span class="float-heart" style="--x:10%;--dur:6s;--delay:0s">💕</span>
+                <span class="float-heart" style="--x:25%;--dur:7s;--delay:1.5s">💗</span>
+                <span class="float-heart" style="--x:75%;--dur:5.5s;--delay:0.8s">💖</span>
+                <span class="float-heart" style="--x:85%;--dur:6.5s;--delay:2s">💕</span>
+                <span class="float-sparkle" style="--x:15%;--dur:4s;--delay:0.3s">✨</span>
+                <span class="float-sparkle" style="--x:60%;--dur:5s;--delay:1s">✨</span>
+                <span class="float-sparkle" style="--x:90%;--dur:4.5s;--delay:2.2s">✨</span>
+            </div>
+
+            <!-- Gift Box -->
+            <div class="gift-box-container">
+                <svg class="gift-box" viewBox="0 0 220 220" aria-label="Gift box">
+                    <!-- Shadow -->
+                    <ellipse cx="110" cy="205" rx="70" ry="8" fill="rgba(0,0,0,0.08)"/>
+                    <!-- Box base -->
+                    <rect x="35" y="105" width="150" height="95" rx="6" fill="#FFB6C1" stroke="#FF85A2" stroke-width="2"/>
+                    <!-- Box pattern -->
+                    <circle cx="70" cy="140" r="3" fill="#FF85A2" opacity="0.2"/>
+                    <circle cx="110" cy="155" r="3" fill="#FF85A2" opacity="0.2"/>
+                    <circle cx="150" cy="135" r="3" fill="#FF85A2" opacity="0.2"/>
+                    <circle cx="90" cy="170" r="3" fill="#FF85A2" opacity="0.2"/>
+                    <circle cx="130" cy="180" r="3" fill="#FF85A2" opacity="0.2"/>
+                    <!-- Box lid -->
+                    <g class="gift-lid">
+                        <rect x="25" y="82" width="170" height="30" rx="6" fill="#FFC0CB" stroke="#FF85A2" stroke-width="2"/>
+                    </g>
+                    <!-- Vertical ribbon -->
+                    <rect x="97" y="82" width="26" height="118" fill="#FF69B4" rx="2" opacity="0.85"/>
+                    <!-- Horizontal ribbon -->
+                    <rect x="25" y="90" width="170" height="16" fill="#FF69B4" rx="2" opacity="0.85"/>
+                    <!-- Bow -->
+                    <g class="gift-bow" transform="translate(110, 82)">
+                        <ellipse cx="-22" cy="-14" rx="22" ry="14" fill="#FF1493" transform="rotate(-20)"/>
+                        <ellipse cx="-17" cy="-11" rx="12" ry="7" fill="#FF69B4" transform="rotate(-20)" opacity="0.45"/>
+                        <ellipse cx="22" cy="-14" rx="22" ry="14" fill="#FF1493" transform="rotate(20)"/>
+                        <ellipse cx="17" cy="-11" rx="12" ry="7" fill="#FF69B4" transform="rotate(20)" opacity="0.45"/>
+                        <circle cx="0" cy="-8" r="8" fill="#FF1493"/>
+                        <circle cx="0" cy="-8" r="4" fill="#FF69B4" opacity="0.4"/>
+                        <path d="M-7,0 Q-22,22 -30,38" stroke="#FF1493" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        <path d="M7,0 Q22,22 30,38" stroke="#FF1493" stroke-width="5" fill="none" stroke-linecap="round"/>
+                    </g>
+                </svg>
+            </div>
+
+            <h1 class="main-title">A Little Surprise For Gayu <span class="title-heart">💗</span></h1>
+            <p class="subtitle">Someone special deserves something beautiful...</p>
+            <button id="open-btn" class="cute-btn" aria-label="Open your surprise, Gayu">
+                <span class="btn-text">Open Your Surprise</span>
+                <span class="btn-emoji">🌷</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ======================== BOUQUET SCREEN ======================== -->
+    <section id="bouquet-screen" class="screen" aria-label="Flower bouquet">
+        <div class="bouquet-container" id="bouquet-container">
+            <svg id="bouquet" viewBox="0 0 600 850" aria-label="Animated flower bouquet">
+                <defs>
+                    <!-- Gradients -->
+                    <linearGradient id="wrapperGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#FFD6E0"/>
+                        <stop offset="50%" stop-color="#FFBDCA"/>
+                        <stop offset="100%" stop-color="#FFB0BE"/>
+                    </linearGradient>
+                    <linearGradient id="wrapperInner" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#FFE4EA"/>
+                        <stop offset="100%" stop-color="#FFD1DC"/>
+                    </linearGradient>
+                    <linearGradient id="ribbonGrad" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0%" stop-color="#FF69B4"/>
+                        <stop offset="50%" stop-color="#FF1493"/>
+                        <stop offset="100%" stop-color="#FF69B4"/>
+                    </linearGradient>
+                    <linearGradient id="stemGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#66BB6A"/>
+                        <stop offset="100%" stop-color="#388E3C"/>
+                    </linearGradient>
+                    <radialGradient id="roseCenter" cx="50%" cy="40%">
+                        <stop offset="0%" stop-color="#F5C6D0"/>
+                        <stop offset="100%" stop-color="#E8849B"/>
+                    </radialGradient>
+                    <radialGradient id="sunCenter" cx="50%" cy="40%">
+                        <stop offset="0%" stop-color="#795548"/>
+                        <stop offset="100%" stop-color="#4E342E"/>
+                    </radialGradient>
+                    <!-- Filters -->
+                    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="4" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="2" dy="5" stdDeviation="5" flood-color="rgba(0,0,0,0.12)"/>
+                    </filter>
+                    <filter id="leafShadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="rgba(0,0,0,0.1)"/>
+                    </filter>
+                </defs>
+
+                <!-- ===== WRAPPER ===== -->
+                <g id="wrapper" class="bouquet-part" filter="url(#softShadow)">
+                    <!-- Main wrapper shape -->
+                    <path d="M175,475 C165,555 195,690 248,770 L352,770 C405,690 435,555 425,475 Z"
+                          fill="url(#wrapperGrad)" stroke="#FFAABB" stroke-width="1.5"/>
+                    <!-- Inner paper showing -->
+                    <path d="M190,475 C182,545 205,670 252,745 L348,745 C395,670 418,545 410,475 Z"
+                          fill="url(#wrapperInner)" opacity="0.35"/>
+                    <!-- Fold lines -->
+                    <path d="M205,490 C210,570 228,670 262,748" stroke="#FFAABB" stroke-width="0.8" fill="none" opacity="0.5"/>
+                    <path d="M250,478 C252,560 260,660 288,750" stroke="#FFAABB" stroke-width="0.8" fill="none" opacity="0.4"/>
+                    <path d="M350,478 C348,560 340,660 312,750" stroke="#FFAABB" stroke-width="0.8" fill="none" opacity="0.4"/>
+                    <path d="M395,490 C390,570 372,670 338,748" stroke="#FFAABB" stroke-width="0.8" fill="none" opacity="0.5"/>
+                    <!-- Scalloped top edge -->
+                    <path d="M175,475 Q195,462 215,475 Q235,462 255,475 Q275,462 300,475 Q325,462 345,475 Q365,462 385,475 Q405,462 425,475"
+                          fill="none" stroke="#FFAABB" stroke-width="1.5"/>
+                    <!-- Decorative dots on wrapper -->
+                    <circle cx="230" cy="560" r="2.5" fill="#FFAABB" opacity="0.25"/>
+                    <circle cx="300" cy="600" r="2.5" fill="#FFAABB" opacity="0.25"/>
+                    <circle cx="370" cy="550" r="2.5" fill="#FFAABB" opacity="0.25"/>
+                    <circle cx="280" cy="650" r="2.5" fill="#FFAABB" opacity="0.25"/>
+                    <circle cx="330" cy="680" r="2.5" fill="#FFAABB" opacity="0.25"/>
+                    <circle cx="260" cy="710" r="2.5" fill="#FFAABB" opacity="0.2"/>
+                    <circle cx="340" cy="720" r="2.5" fill="#FFAABB" opacity="0.2"/>
+                    <!-- Dedicated Gift Tag for Gayu -->
+                    <g class="wrapper-tag" transform="translate(300, 642)">
+                        <rect x="-65" y="-18" width="130" height="36" rx="18" fill="#FFF5F8" stroke="#FFB0C0" stroke-width="1.5" opacity="0.95"/>
+                        <circle cx="-52" cy="0" r="3" fill="#FF85A2"/>
+                        <circle cx="52" cy="0" r="3" fill="#FF85A2"/>
+                        <text x="0" y="6" text-anchor="middle" font-family="'Dancing Script', cursive" font-size="20" font-weight="700" fill="#D81B60">For Gayu 💖</text>
+                    </g>
+                </g>
+
+                <!-- ===== RIBBON & BOW ===== -->
+                <g id="ribbon-bow" class="bouquet-part">
+                    <!-- Ribbon wraps -->
+                    <path d="M205,530 Q300,512 395,530" stroke="url(#ribbonGrad)" stroke-width="10" fill="none" stroke-linecap="round"/>
+                    <path d="M210,542 Q300,526 390,542" stroke="url(#ribbonGrad)" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.65"/>
+                    <!-- Bow -->
+                    <g transform="translate(300, 518)">
+                        <!-- Left loop -->
+                        <ellipse cx="-28" cy="-14" rx="28" ry="16" fill="#FF69B4" transform="rotate(-15)"/>
+                        <ellipse cx="-22" cy="-11" rx="16" ry="8" fill="#FFB0CC" transform="rotate(-15)" opacity="0.45"/>
+                        <!-- Right loop -->
+                        <ellipse cx="28" cy="-14" rx="28" ry="16" fill="#FF69B4" transform="rotate(15)"/>
+                        <ellipse cx="22" cy="-11" rx="16" ry="8" fill="#FFB0CC" transform="rotate(15)" opacity="0.45"/>
+                        <!-- Center knot -->
+                        <circle cx="0" cy="-9" r="10" fill="#FF1493"/>
+                        <circle cx="0" cy="-9" r="5" fill="#FF69B4" opacity="0.35"/>
+                        <!-- Trailing ribbons -->
+                        <path d="M-8,2 Q-25,30 -40,55" stroke="#FF69B4" stroke-width="7" fill="none" stroke-linecap="round"/>
+                        <path d="M8,2 Q25,30 40,55" stroke="#FF69B4" stroke-width="7" fill="none" stroke-linecap="round"/>
+                        <path d="M-8,2 Q-25,30 -40,55" stroke="#FFB0CC" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.3"/>
+                        <path d="M8,2 Q25,30 40,55" stroke="#FFB0CC" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.3"/>
+                    </g>
+                </g>
+
+                <!-- ===== STEMS ===== -->
+                <g id="stems">
+                    <!-- Stem 1: Center Rose -->
+                    <path class="stem" d="M300,515 C298,460 296,360 300,205" stroke="url(#stemGrad)" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 2: Left Tulip -->
+                    <path class="stem" d="M292,515 C278,450 238,360 175,255" stroke="#4CAF50" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 3: Right Tulip -->
+                    <path class="stem" d="M308,515 C322,450 365,365 425,250" stroke="#43A047" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 4: Left Daisy -->
+                    <path class="stem" d="M288,515 C272,440 238,340 210,170" stroke="#4CAF50" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 5: Right Daisy -->
+                    <path class="stem" d="M312,515 C328,440 368,335 400,165" stroke="#43A047" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 6: Sunflower (top) -->
+                    <path class="stem" d="M300,515 C300,430 300,280 300,100" stroke="#388E3C" stroke-width="5" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 7: Small left -->
+                    <path class="stem" d="M282,515 C258,460 200,400 148,340" stroke="#66BB6A" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 8: Small right -->
+                    <path class="stem" d="M318,515 C342,460 400,395 455,325" stroke="#66BB6A" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 9: Small upper left -->
+                    <path class="stem" d="M294,515 C280,430 252,310 240,130" stroke="#81C784" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+                    <!-- Stem 10: Small upper right -->
+                    <path class="stem" d="M306,515 C320,430 348,310 365,125" stroke="#81C784" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+                </g>
+
+                <!-- ===== LEAVES ===== -->
+                <g id="leaves" filter="url(#leafShadow)">
+                    <g transform="translate(292,400) rotate(-40)">
+                        <g class="leaf" style="--i:0">
+                            <path d="M0,0 Q14,-20 0,-40 Q-14,-20 0,0" fill="#66BB6A"/>
+                            <line x1="0" y1="-2" x2="0" y2="-38" stroke="#4CAF50" stroke-width="0.8" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(312,415) rotate(38)">
+                        <g class="leaf" style="--i:1">
+                            <path d="M0,0 Q12,-17 0,-34 Q-12,-17 0,0" fill="#81C784"/>
+                            <line x1="0" y1="-2" x2="0" y2="-32" stroke="#66BB6A" stroke-width="0.8" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(268,355) rotate(-50)">
+                        <g class="leaf" style="--i:2">
+                            <path d="M0,0 Q15,-22 0,-42 Q-15,-22 0,0" fill="#4CAF50"/>
+                            <line x1="0" y1="-2" x2="0" y2="-40" stroke="#388E3C" stroke-width="0.8" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(338,365) rotate(48)">
+                        <g class="leaf" style="--i:3">
+                            <path d="M0,0 Q13,-18 0,-36 Q-13,-18 0,0" fill="#66BB6A"/>
+                            <line x1="0" y1="-2" x2="0" y2="-34" stroke="#4CAF50" stroke-width="0.8" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(245,305) rotate(-55)">
+                        <g class="leaf" style="--i:4">
+                            <path d="M0,0 Q12,-16 0,-32 Q-12,-16 0,0" fill="#81C784"/>
+                            <line x1="0" y1="-2" x2="0" y2="-30" stroke="#66BB6A" stroke-width="0.7" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(360,315) rotate(52)">
+                        <g class="leaf" style="--i:5">
+                            <path d="M0,0 Q12,-17 0,-33 Q-12,-17 0,0" fill="#4CAF50"/>
+                            <line x1="0" y1="-2" x2="0" y2="-31" stroke="#388E3C" stroke-width="0.7" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(225,258) rotate(-40)">
+                        <g class="leaf" style="--i:6">
+                            <path d="M0,0 Q10,-14 0,-28 Q-10,-14 0,0" fill="#A5D6A7"/>
+                            <line x1="0" y1="-2" x2="0" y2="-26" stroke="#81C784" stroke-width="0.6" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(382,270) rotate(42)">
+                        <g class="leaf" style="--i:7">
+                            <path d="M0,0 Q10,-15 0,-29 Q-10,-15 0,0" fill="#81C784"/>
+                            <line x1="0" y1="-2" x2="0" y2="-27" stroke="#4CAF50" stroke-width="0.6" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(275,230) rotate(-30)">
+                        <g class="leaf" style="--i:8">
+                            <path d="M0,0 Q9,-13 0,-25 Q-9,-13 0,0" fill="#A5D6A7"/>
+                            <line x1="0" y1="-2" x2="0" y2="-23" stroke="#81C784" stroke-width="0.6" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(335,238) rotate(32)">
+                        <g class="leaf" style="--i:9">
+                            <path d="M0,0 Q9,-13 0,-26 Q-9,-13 0,0" fill="#C8E6C9"/>
+                            <line x1="0" y1="-2" x2="0" y2="-24" stroke="#A5D6A7" stroke-width="0.6" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(195,310) rotate(-62)">
+                        <g class="leaf" style="--i:10">
+                            <path d="M0,0 Q11,-16 0,-30 Q-11,-16 0,0" fill="#66BB6A"/>
+                            <line x1="0" y1="-2" x2="0" y2="-28" stroke="#4CAF50" stroke-width="0.7" opacity="0.6"/>
+                        </g>
+                    </g>
+                    <g transform="translate(410,298) rotate(58)">
+                        <g class="leaf" style="--i:11">
+                            <path d="M0,0 Q11,-15 0,-29 Q-11,-15 0,0" fill="#81C784"/>
+                            <line x1="0" y1="-2" x2="0" y2="-27" stroke="#66BB6A" stroke-width="0.7" opacity="0.6"/>
+                        </g>
+                    </g>
+                </g>
+
+                <!-- ===== FLOWERS ===== -->
+                <g id="flowers">
+
+                    <!-- ───── SUNFLOWER (top center) ───── -->
+                    <g class="flower-group" data-flower="sunflower" transform="translate(300, 95)" style="--bloom:0">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(0)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(20)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(40)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(60)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(80)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(100)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(120)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(140)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(160)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(180)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(200)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(220)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(240)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(260)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(280)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(300)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F4D03F" transform="rotate(320)"/>
+                                <ellipse class="petal" cx="0" cy="-30" rx="7" ry="17" fill="#F7DC6F" transform="rotate(340)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="16" fill="url(#sunCenter)"/>
+                            <circle cx="-5" cy="-5" r="1.5" fill="#6D4C41" opacity="0.5"/>
+                            <circle cx="3" cy="-7" r="1.5" fill="#6D4C41" opacity="0.5"/>
+                            <circle cx="7" cy="-1" r="1.5" fill="#6D4C41" opacity="0.5"/>
+                            <circle cx="-2" cy="4" r="1.5" fill="#6D4C41" opacity="0.5"/>
+                            <circle cx="5" cy="6" r="1.5" fill="#6D4C41" opacity="0.5"/>
+                            <circle cx="-7" cy="3" r="1.5" fill="#6D4C41" opacity="0.5"/>
+                            <circle cx="0" cy="-2" r="1.5" fill="#6D4C41" opacity="0.4"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── PINK ROSE (center) ───── -->
+                    <g class="flower-group" data-flower="rose" transform="translate(300, 200)" style="--bloom:1">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <!-- Outer petals -->
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F8A4B8" transform="rotate(0)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F599AE" transform="rotate(72)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F8A4B8" transform="rotate(144)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F599AE" transform="rotate(216)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F8A4B8" transform="rotate(288)"/>
+                                <!-- Mid petals -->
+                                <ellipse class="petal" cx="0" cy="-10" rx="14" ry="19" fill="#F7B5C5" transform="rotate(36)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="14" ry="19" fill="#FACDD8" transform="rotate(108)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="14" ry="19" fill="#F7B5C5" transform="rotate(180)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="14" ry="19" fill="#FACDD8" transform="rotate(252)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="14" ry="19" fill="#F7B5C5" transform="rotate(324)"/>
+                                <!-- Inner petals -->
+                                <ellipse class="petal" cx="0" cy="-5" rx="9" ry="13" fill="#FBDCE4" transform="rotate(20)"/>
+                                <ellipse class="petal" cx="0" cy="-5" rx="9" ry="13" fill="#F9D0DA" transform="rotate(80)"/>
+                                <ellipse class="petal" cx="0" cy="-5" rx="9" ry="13" fill="#FBDCE4" transform="rotate(140)"/>
+                                <ellipse class="petal" cx="0" cy="-5" rx="9" ry="13" fill="#F9D0DA" transform="rotate(200)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="6" fill="url(#roseCenter)"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── LEFT TULIP ───── -->
+                    <g class="flower-group" data-flower="tulip" transform="translate(175, 250)" style="--bloom:2">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="-10" cy="-18" rx="16" ry="30" fill="#9B59B6" transform="rotate(-12)"/>
+                                <ellipse class="petal" cx="10" cy="-18" rx="16" ry="30" fill="#8E44AD" transform="rotate(12)"/>
+                                <ellipse class="petal" cx="0" cy="-22" rx="14" ry="28" fill="#A569BD"/>
+                                <ellipse class="petal" cx="0" cy="-14" rx="8" ry="16" fill="#C39BD3" opacity="0.5"/>
+                            </g>
+                        </g>
+                    </g>
+
+                    <!-- ───── RIGHT TULIP ───── -->
+                    <g class="flower-group" data-flower="tulip" transform="translate(425, 245)" style="--bloom:3">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="-10" cy="-18" rx="16" ry="30" fill="#8E44AD" transform="rotate(-12)"/>
+                                <ellipse class="petal" cx="10" cy="-18" rx="16" ry="30" fill="#9B59B6" transform="rotate(12)"/>
+                                <ellipse class="petal" cx="0" cy="-22" rx="14" ry="28" fill="#AF7AC5"/>
+                                <ellipse class="petal" cx="0" cy="-14" rx="8" ry="16" fill="#D2B4DE" opacity="0.5"/>
+                            </g>
+                        </g>
+                    </g>
+
+                    <!-- ───── LEFT DAISY ───── -->
+                    <g class="flower-group" data-flower="daisy" transform="translate(210, 165)" style="--bloom:4">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(0)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(30)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(60)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(90)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(120)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(150)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(180)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(210)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(240)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(270)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(300)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(330)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="9" fill="#FFD700"/>
+                            <circle cx="0" cy="0" r="6" fill="#FFC107" opacity="0.6"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── RIGHT DAISY ───── -->
+                    <g class="flower-group" data-flower="daisy" transform="translate(400, 160)" style="--bloom:5">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(15)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(45)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(75)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(105)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(135)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(165)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(195)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(225)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(255)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(285)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFF8F0" transform="rotate(315)"/>
+                                <ellipse class="petal" cx="0" cy="-20" rx="6" ry="16" fill="#FFFFFF" transform="rotate(345)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="9" fill="#FFD700"/>
+                            <circle cx="0" cy="0" r="6" fill="#FFC107" opacity="0.6"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── SMALL FLOWER 1 (upper-left, lavender) ───── -->
+                    <g class="flower-group small" data-flower="small" transform="translate(240, 125)" style="--bloom:6">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#D7BDE2" transform="rotate(0)"/>
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#E8DAEF" transform="rotate(72)"/>
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#D7BDE2" transform="rotate(144)"/>
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#E8DAEF" transform="rotate(216)"/>
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#D7BDE2" transform="rotate(288)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="5" fill="#F5EEF8"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── SMALL FLOWER 2 (upper-right, baby blue) ───── -->
+                    <g class="flower-group small" data-flower="small" transform="translate(365, 120)" style="--bloom:7">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#AED6F1" transform="rotate(0)"/>
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#D4E6F1" transform="rotate(72)"/>
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#AED6F1" transform="rotate(144)"/>
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#D4E6F1" transform="rotate(216)"/>
+                                <ellipse class="petal" cx="0" cy="-12" rx="6" ry="11" fill="#AED6F1" transform="rotate(288)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="5" fill="#EBF5FB"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── SMALL FLOWER 3 (far-left, pink) ───── -->
+                    <g class="flower-group small" data-flower="small" transform="translate(148, 335)" style="--bloom:8">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#FADBD8" transform="rotate(0)"/>
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#F5B7B1" transform="rotate(72)"/>
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#FADBD8" transform="rotate(144)"/>
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#F5B7B1" transform="rotate(216)"/>
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#FADBD8" transform="rotate(288)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="4.5" fill="#FDEDEC"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── SMALL FLOWER 4 (far-right, cream) ───── -->
+                    <g class="flower-group small" data-flower="small" transform="translate(455, 320)" style="--bloom:9">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#FDEBD0" transform="rotate(0)"/>
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#FAD7A0" transform="rotate(72)"/>
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#FDEBD0" transform="rotate(144)"/>
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#FAD7A0" transform="rotate(216)"/>
+                                <ellipse class="petal" cx="0" cy="-11" rx="5.5" ry="10" fill="#FDEBD0" transform="rotate(288)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="4.5" fill="#FEF9E7"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── SECOND ROSE (smaller, upper area) ───── -->
+                    <g class="flower-group" data-flower="rose" transform="translate(260, 285) scale(0.7)" style="--bloom:10">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F0B0C0" transform="rotate(15)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#EDA0B2" transform="rotate(87)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F0B0C0" transform="rotate(159)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#EDA0B2" transform="rotate(231)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F0B0C0" transform="rotate(303)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="12" ry="17" fill="#F5C0CC" transform="rotate(50)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="12" ry="17" fill="#F8D0DA" transform="rotate(122)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="12" ry="17" fill="#F5C0CC" transform="rotate(194)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="12" ry="17" fill="#F8D0DA" transform="rotate(266)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="5" fill="#E8929F"/>
+                        </g>
+                    </g>
+
+                    <!-- ───── THIRD ROSE (smaller, right side) ───── -->
+                    <g class="flower-group" data-flower="rose" transform="translate(350, 275) scale(0.65)" style="--bloom:11">
+                        <g class="flower-sway">
+                            <g class="petals">
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F2A5B5" transform="rotate(10)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#EF95A8" transform="rotate(82)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F2A5B5" transform="rotate(154)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#EF95A8" transform="rotate(226)"/>
+                                <ellipse class="petal" cx="0" cy="-16" rx="20" ry="26" fill="#F2A5B5" transform="rotate(298)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="12" ry="17" fill="#F7BDC8" transform="rotate(45)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="12" ry="17" fill="#FACDD5" transform="rotate(117)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="12" ry="17" fill="#F7BDC8" transform="rotate(189)"/>
+                                <ellipse class="petal" cx="0" cy="-10" rx="12" ry="17" fill="#FACDD5" transform="rotate(261)"/>
+                            </g>
+                            <circle cx="0" cy="0" r="5" fill="#E08898"/>
+                        </g>
+                    </g>
+
+                </g><!-- /flowers -->
+
+                <!-- ===== SVG SPARKLE SPOTS (JS will add more) ===== -->
+                <g id="svg-sparkles" aria-hidden="true"></g>
+
+            </svg>
+        </div>
+
+        <!-- Romantic Message -->
+        <div id="message-container">
+            <p class="message-text">Just like these flowers, you make the world a little more beautiful, Gayu. 💗</p>
+            <p class="message-subtitle">A little bouquet, made with lots of love, just for you.</p>
+        </div>
+
+        <!-- Controls -->
+        <div id="controls">
+            <button id="replay-btn" class="cute-btn small" aria-label="Replay animation">
+                <span>🔄 Replay</span>
+            </button>
+            <button id="petal-shower-btn" class="cute-btn small" aria-label="Trigger petal shower">
+                <span>🌸 Petal Shower</span>
+            </button>
+            <button id="send-love-btn" class="cute-btn primary" aria-label="Send love">
+                <span>Send Love 💌</span>
+            </button>
+            <button id="music-toggle" class="icon-btn" aria-label="Toggle music" title="Toggle Music">
+                <span class="music-icon">🎵</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ======================== SEND LOVE OVERLAY ======================== -->
+    <div id="send-love-overlay" aria-hidden="true">
+        <div class="love-response">
+            <div class="love-emoji-burst" aria-hidden="true"></div>
+            <p class="love-title">Love Sent to Gayu! 💕</p>
+            <p class="love-sub">Lots of warm hugs and love are floating your way...</p>
+            <button id="close-love-btn" class="cute-btn small">Close ✨</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
